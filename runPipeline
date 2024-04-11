@@ -497,6 +497,7 @@ sub prepareExpDesignAndConfig{
     my $eukarya_gff = ($configuration->{piret_eukarya_gff})?$configuration->{piret_eukarya_gff}:"NA";
     my $index_ref = $configuration->{piret_index} || "hisat_index";
     my $fh;
+    my $hisat_stranded="RF";
     my $method_config="edgeR, DESeq2";
     if ($test_method eq "edgeR"){
         $method_config = "edgeR";
@@ -510,6 +511,13 @@ sub prepareExpDesignAndConfig{
         $method_config = "ballgown, edgeR";
     }elsif($test_method eq "DEgown"){
         $method_config = "DESeq2, ballgown";
+    }
+    if ($stranded == 0 ){
+        $hisat_stranded="F";
+    }elsif($stranded == 1 ){
+        $hisat_stranded="FR";
+    }elsif($stranded == 2 ){
+        $hisat_stranded="RF";
     }
     if ($kingdom eq 'prokarya')
     {
@@ -646,7 +654,7 @@ min_introlen=20
 # # maximum intro length
 max_introlen=500000
 # # strandness information, if its F, R, FR, or FR
-rna_strandness=FR
+rna_strandness=$hisat_stranded
 
 [HisatMapW]
 
