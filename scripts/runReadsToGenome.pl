@@ -348,7 +348,7 @@ for my $ref_file_i ( 0..$#ref_files){
 			my $ploidy_o = ($ploidy =~ /haploid/i)? "--ploidy 1" : "";
 			my $indel_o = ($no_indels)? " -I ":""; 
 			my $baq_o = ($disableBAQ)? " -B ":"";
-			my $bcf_filter = ($variant_qual)? " -i \'\%QUAL>=$variant_qual\' ":"";
+			my $bcf_filter = ($variant_qual)? " -i \'QUAL>=$variant_qual\' ":"";
 			`bcftools mpileup $indel_o $baq_o -A -q $map_quality -d $max_depth -L $max_depth -m $min_indel_candidate_depth -Ov -f $ref_file $bam_output | bcftools call $ploidy_o -mv -O b - > $bcf_output 2>/dev/null`;
 			`bcftools view $bcf_filter -v snps,indels,mnps,ref,bnd,other -Ov $bcf_output | vcfutils.pl varFilter -a$min_alt_bases -d$min_depth  > $vcf_output`;
 			#bcftools view -i '%QUAL>=20' calls.bcf
