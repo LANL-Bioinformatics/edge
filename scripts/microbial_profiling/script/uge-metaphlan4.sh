@@ -57,7 +57,7 @@ mkdir -p $OUTPATH
 
 set -x;
 #run metaphlan
-time metaphlan --bowtie2db ${DB} --bowtie2out ${OUTPATH}/${PREFIX}.bt2out --nproc ${THREADS} --input_type fastq ${FASTQ} ${OUTPATH}/${PREFIX}.out.mpln
+time metaphlan --offline --bowtie2db ${DB} --bowtie2out ${OUTPATH}/${PREFIX}.bt2out --nproc ${THREADS} --input_type fastq ${FASTQ} ${OUTPATH}/${PREFIX}.out.mpln
 
 #parse mpln
 convert_metaphlan2tabTree.pl < $OUTPATH/$PREFIX.out.mpln > $OUTPATH/$PREFIX.out.tab_tree
