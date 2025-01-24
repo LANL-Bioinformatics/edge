@@ -1533,6 +1533,7 @@ then
 fi
 
 $mambaforgebin/conda env create -n qiime2 --file qiime2-2023.5-py38-linux-conda.yml
+$mambaforgebin/conda install --no-deps -n qiime2 bioconda::unifrac=1.3 unifrac-binaries=1.4
 echo "
 ------------------------------------------------------------------------------
                          QIIME2 $VER Installed
